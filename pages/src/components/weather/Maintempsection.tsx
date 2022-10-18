@@ -1,9 +1,12 @@
 import React, {useState,useEffect} from 'react'
 import { WiDayFog, WiHumidity } from "react-icons/wi"
+import { GiSunset, GiSunrise, GiWindsock, GiRaining } from "react-icons/gi"
+import { FaTemperatureHigh, FaTemperatureLow } from "react-icons/fa"
+// GiSunset, GiSunrise, GiWindsock, GiRaining
+//FaTemperatureHigh, FaTemperatureLow
 
-const Maintempsection = (props) => {
+const Maintempsection = () => {
 
-    // section 2
     const mySection2: React.CSSProperties = {
         width: "100%",
         height: "35vh",
@@ -16,7 +19,6 @@ const Maintempsection = (props) => {
         color: "black"
     }
 
-    // lArticle
     const lArticle: React.CSSProperties = {
         width : "100%",
         // height: "35vh",
@@ -40,7 +42,6 @@ const Maintempsection = (props) => {
         fontSize: "7em"
     }
 
-    // rArticle
     const rArticle: React.CSSProperties = {
         width : "100%",
     }
@@ -64,7 +65,7 @@ const Maintempsection = (props) => {
 
     let lat = 50.073658;
     let lon = 14.418540;
-    const url2 = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${myApi}`
+    const url2 = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${myApi}`
 
     const [mainTemp, setMainTemp] = useState('.')
 
@@ -79,26 +80,17 @@ const Maintempsection = (props) => {
         })
     }
 
-    // function myCall2() {
-    //     const dataArr: any = [];
-    //     fetch(url2)
-    //     .then((data)=> data.json())
-    //     .then(data=>console.log(data.list[0][3][1].main))
-    //     // .then(data=>{
-    //     //     for (let i=0; i<5; i++) {
-    //     //        dataArr.push(data[i]);
-    //     //     }
-    //     // })
-    //     console.log(dataArr);
-    // }
-
     const getDatafor7days = async () => {
         try {
           let res = await fetch(url2);
           let data = await res.json();
         //   console.log("data", data.list[0].weather[0].main);
-        for(let i =0; i<7; i++){
-            console.log("data:", data.list[i].weather[0].icon);
+        for(let i =0; i<40; i++){
+            if(i%8==0 || i===0) {
+                console.log(i)
+                console.log("data:", data.list[i].weather[0].icon);
+                console.log(data.list[i])
+            }
         }
         } catch (error) {
           console.log(error);
@@ -107,22 +99,20 @@ const Maintempsection = (props) => {
 
     useEffect(()=>{
         mycall()
-        // myCall2()
         getDatafor7days();
     },[])
 
     
+    const [icon, setIcon] = useState("high")
 
-    const details = [];
-
-    const detailsPush = () => {
-        return (
-            <section className='left w-3/5 h-full  border-2 grid content-center justify-center'>
-                <h3 className='text-xl'>{details[x].name}</h3>
-                <h1 className='text-2xl'>{details[x].value}</h1>
-            </section>
-        )
-    }
+    const details = {"items": [
+        {"name": "High", "value": "23°", "icon": "high"},
+        {"name": "Wind", "value": "7mph", "icon": "wind"},
+        {"name": "Sunrise", "value": "5:27", "icon": "sunrise"},
+        {"name": "Low", "value": "14°", "icon": "low"},
+        {"name": "Rain", "value": "0%", "icon": "rain"},
+        {"name": "Sunset", "value": "20:57", "icon": "sunset"},
+    ]}
 
 
     const detailcards = () => {
@@ -130,17 +120,18 @@ const Maintempsection = (props) => {
         for(let i=0; i<6;i++) {
             detailarr.push(
             <div className="grid-card border-2 border-black rounded-lg p-2 w-full h-full flex" key={i}>
-                {/* {detailscardsinner()} */}
+                <section className='left w-3/5 h-full  border-2 grid content-center justify-center'>
+                    <h3 className='text-xl'>{details.items[i].name}</h3>
+                    <h1 className='text-2xl'>{details.items[i].value}</h1>
+                </section>
                 <section className='right w-2/5 h-full  border-2 grid justify-center content-center'>
-                    <WiHumidity className='text-6xl text-teal-700'/>
+                    {icon ==="high" && <WiHumidity className='text-6xl text-teal-700'/>}
                 </section>
             </div>
             )
         }
         return detailarr
     }
-
-
 
   return (
     <section style={mySection2}>

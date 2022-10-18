@@ -3,7 +3,6 @@ import Todays from './Todays'
 
 const Forecast = (props:any) => {
 
-    // section 3
     const mySection3: React.CSSProperties = {
         width: "100%",
         height: "49vh",
@@ -36,21 +35,9 @@ const Forecast = (props:any) => {
 
     }
 
-    // const todaysBoxLi: React.CSSProperties = {
-        
-    //     minWidth: "100px",
-    //     // border: "solid white 1px",
-    //     padding: "20px",
-    //     display: "flex",
-    //     flexDirection: "column",
-    //     alignItems: "center",
-    //     border: "solid red 1px"
-    // }
-
     const weekDays =  ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     const weekday = weekDays[(new Date().getDay())];
     
-
     // useEffect(()=>{
     //     console.log(`Next days for forecast: ${weekDays[(new Date().getDay())]}`)
     // },[])
@@ -72,7 +59,7 @@ const Forecast = (props:any) => {
             if(!touch) nextdays.push(day)
         })
         // nextdays.push(weekday);
-        for (let i=0; i<7;i++) {
+        for (let i=0; i<5;i++) {
             n.push(<Todays time={nextdays[i]} key={i}/>)
         }
         console.log(`This is nextdays: ${nextdays}`)
@@ -82,7 +69,7 @@ const Forecast = (props:any) => {
   return (
     <section style={mySection3}>
         <article style={centerBox}>
-            <h6 className='flex justify-center p-2 border border-orange-600 border-3' style={todaysWeather}>Todays weather</h6>
+            <h6 className='flex justify-center p-2 border border-orange-600 border-3' style={todaysWeather}>Weather forecast</h6>
             <ul style={todaysBox}>
                 {renderToday()}
             </ul>

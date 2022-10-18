@@ -33,26 +33,17 @@ const weather = () => {
         color: "white"
     }
     
-    //vengIsCoding
-
-    // ---------------------------------------------------------------------------------------
 
 
     const [closed, setClosed] = useState(true);
     const [location, setLocation] = useState('');
     const [fixLocation, setFixLocation] = (useState('Prague, Czech Republic'));
 
-
-    // const myInput = useRef()
-    // myInput.focus()
-
     const mainSearch = useRef<HTMLTableSectionElement>(null);
 
     const close = (): void => {
         if(!closed) {
             setClosed(true);
-            // setLocation("");
-            
             const search = document.querySelector("#search-section");
             search.style.display = 'none'   
         }
@@ -82,13 +73,9 @@ const weather = () => {
 
     useEffect(() => {
         if (inputElement.current) {
-        inputElement.current.focus();  //pote jeste vypnout
+        inputElement.current.focus(); 
         }
     }, [closed]);
-
-    // useEffect(()=> {
-    //     console.log("b")
-    // }, [fixLocation])
 
     useEffect(()=>{
         if (location==='') {
@@ -100,10 +87,9 @@ const weather = () => {
 
    
 
-     
   return (
     <>
-        <section ref={mainSearch} id='search-section' style={mySearch}>
+        <section ref={mainSearch} id='search-section' style={mySearch} >
             <article className="w-1/2 h-1/3 relative" style={searchBox}>
             <RiCloseCircleLine className='absolute top-2 right-3 text-4xl cursor-pointer hover:color-black' onClick={close}/>
             <h1 className="text-2xl font-bold ml-1">
