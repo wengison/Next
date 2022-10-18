@@ -6,14 +6,14 @@ const Forecast = (props:any) => {
     const mySection3: React.CSSProperties = {
         width: "100%",
         height: "49vh",
-        border: "solid red 1px"
+        // border: "solid red 1px"
     }
 
     const centerBox: React.CSSProperties = {
         margin: "auto",
         width: "60%",
         height: "100%",
-        border: "solid green 2px",
+        border: "solid black 2px",
         overflow: "hidden",
         display: "flex",
         flexDirection: "column",
@@ -31,7 +31,7 @@ const Forecast = (props:any) => {
         alignItems: "start",
         gap: "25px",
         listStyle: "none",
-        border: "solid green 1px"
+        border: "solid black 1px"
 
     }
 
@@ -62,14 +62,14 @@ const Forecast = (props:any) => {
         for (let i=0; i<5;i++) {
             n.push(<Todays time={nextdays[i]} key={i}/>)
         }
-        console.log(`This is nextdays: ${nextdays}`)
+        // console.log(`This is nextdays: ${nextdays}`)
         return n
     }
 
   return (
     <section style={mySection3}>
         <article style={centerBox}>
-            <h6 className='flex justify-center p-2 border border-orange-600 border-3' style={todaysWeather}>Weather forecast</h6>
+            <h6 className='flex justify-center p-2 border border-black border-3' style={todaysWeather}>Weather forecast</h6>
             <ul style={todaysBox}>
                 {renderToday()}
             </ul>

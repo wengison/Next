@@ -37,7 +37,7 @@ const weather = () => {
 
     const [closed, setClosed] = useState(true);
     const [location, setLocation] = useState('');
-    const [fixLocation, setFixLocation] = (useState('Prague, Czech Republic'));
+    const [fixLocation, setFixLocation] = (useState('Pardubice, Czech Republic'));
 
     const mainSearch = useRef<HTMLTableSectionElement>(null);
 

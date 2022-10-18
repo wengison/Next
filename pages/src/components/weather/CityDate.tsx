@@ -3,11 +3,6 @@ import {RiCloseCircleLine, RiSearchLine} from "react-icons/ri"
 
 const CityDate = (props:any) => {
 
-    
-// const {value.location} = props;   
-
-
-
     const open = (): void => {
         if(props.value.closed) {
             props.value.setClosed(false)
@@ -35,7 +30,7 @@ const CityDate = (props:any) => {
     const [month, setMonth] = useState('');
 
     useEffect(()=> {
-        console.log(props.value.day, props.value.setDay)
+        // console.log(props.value.day, props.value.setDay)
         const getactualdate = new Date();
         // setDate(getactualdate);
         setDay(getactualdate.getDate());
@@ -48,7 +43,7 @@ const CityDate = (props:any) => {
     }
 
     const displayWeekDay = () => {
-        console.log(weekDays[weekday-1])
+        // console.log(weekDays[weekday-1])
         return weekDays[weekday-1]
     }
 
